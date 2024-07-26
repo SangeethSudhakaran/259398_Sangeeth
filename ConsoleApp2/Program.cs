@@ -1,4 +1,4 @@
-﻿using System.Net.Security; 
+﻿using System.Net.Security;
 
 namespace ConsoleApp2
 {
@@ -37,12 +37,13 @@ namespace ConsoleApp2
             //day4.Day4Question1_Paliendrome();
 
             //Employee class 
-            employee = employee.NewEmployee();
-            employee.PrintEmployee(employee);
+            //employee = employee.NewEmployee();
+            //employee.PrintEmployee(employee);
             #endregion
 
             #region Day5
-            day5.Day5Example1_Constructor();
+            //day5.Day5Example1_Constructor();
+            prg.EmployeeCrudOperation();
             #endregion
 
 
@@ -50,7 +51,49 @@ namespace ConsoleApp2
 
 
 
+        void EmployeeCrudOperation()
+        {
+            Employee[] employees = new Employee[10];
+            EmployeeCRUD employeeCRUD = new EmployeeCRUD();
+            int userInput = 0;
+            int empCounter = 0;
 
+            //employees[0] = employeeCRUD.NewEmployee();
+            //employees[1] = employeeCRUD.NewEmployee();
+
+            //employeeCRUD.PrintEmployees(employees);
+
+
+            while (userInput < 5)
+            {
+                Console.WriteLine("Please enter a choice");
+                Console.WriteLine("Employee management");
+                Console.WriteLine(" 1. Add \n 2. Update \n 3. Delete \n 4. List \n 5. Exit \n");
+                userInput = Convert.ToInt16(Console.ReadLine());
+                switch (userInput)
+                {
+                    case 1:
+                        employees[empCounter] = employeeCRUD.NewEmployee();
+                        empCounter++;
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        employeeCRUD.PrintEmployees(employees);
+                        break;
+                    case 5:
+                        
+                        break;
+                    default:
+                        Console.WriteLine("Enter a valid choice!");
+                        break;
+                }
+            }
+
+
+        }
 
 
 
