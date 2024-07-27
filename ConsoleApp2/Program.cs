@@ -50,7 +50,8 @@ namespace ConsoleApp2
             #region Day6
             //day6.Day6Example1_ConstructorDestructor();
             //day6.Day6Example2_MultilevelInheritance();
-            day6.Day6Example2_StudentProfessor();
+            //day6.Day6Example2_StudentProfessor();
+            day6.Day6Example3_StudentProfessor3People();
             #endregion
 
         }
