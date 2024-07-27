@@ -8,10 +8,6 @@ namespace ConsoleApp2
 {
     public class EmployeeCRUD
     {
-
-
-
-
         public Employee NewEmployee()
         {
             Employee employee = new Employee();
@@ -31,12 +27,23 @@ namespace ConsoleApp2
             return employee;
 
         }
+
+        public Employee[] Delete(int employeeId, Employee[] employees)
+        {
+            int indexToRemove = Array.IndexOf(employees, employeeId);
+            Employee[] employees1 = new Employee[10];
+
+            Array.Copy(employees, 0, employees1, 0, indexToRemove);
+            Array.Copy(employees, indexToRemove + 1, employees1, indexToRemove, employees.Length - indexToRemove - 1);
+            return employees1;
+        }
+
         public Employee Update()
         {
             Employee employee = new Employee();
 
-            Console.WriteLine("Enter employee Id");
-            employee.Id = int.Parse(Console.ReadLine());
+            //Console.WriteLine("Enter employee Id");
+            //employee.Id = int.Parse(Console.ReadLine());
 
             Console.WriteLine("Enter employee Name");
             employee.Name = Console.ReadLine();
