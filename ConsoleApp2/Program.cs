@@ -13,6 +13,7 @@ namespace ConsoleApp2
             Day4 day4 = new Day4();
             Day5 day5 = new Day5();
             Day6 day6 = new Day6();
+            Day7 day7 = new Day7();
             //Day3Question1_Swap();
             //prg.Day3Question1_Swap();
             //prg.ElectricityCalc();
@@ -30,7 +31,6 @@ namespace ConsoleApp2
             //day3.Day3Question2_OutKeyword();
             //day3.Day3Question1_Swap();
             #endregion
-
 
             #region Day4
             //day4.Day4Example1_TryParse(); 
@@ -51,7 +51,13 @@ namespace ConsoleApp2
             //day6.Day6Example1_ConstructorDestructor();
             //day6.Day6Example2_MultilevelInheritance();
             //day6.Day6Example2_StudentProfessor();
-            day6.Day6Example3_StudentProfessor3People();
+            //day6.Day6Example3_StudentProfessor3People();
+            #endregion
+
+            #region Day7
+            //day7.Day7Example1_AbstractClass();
+            day7.Day7Example2_MethodOverloading();
+
             #endregion
 
         }
