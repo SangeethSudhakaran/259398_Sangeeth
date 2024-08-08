@@ -78,7 +78,8 @@ namespace ConsoleApp2
             #endregion
 
             #region Day11
-            day11.Day11Example1_RegEx();
+            //day11.Day11Example1_RegEx();
+            day11.Day11Example1_RegEx1();
             #endregion
 
         }
