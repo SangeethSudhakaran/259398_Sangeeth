@@ -17,6 +17,7 @@ namespace ConsoleApp2
             Day8 day8 = new Day8();
             Day9 day9 = new Day9();
             Day10 day10 = new Day10(); 
+            Day11 day11 = new Day11();
             //Day3Question1_Swap();
             //prg.Day3Question1_Swap();
             //prg.ElectricityCalc();
@@ -60,7 +61,7 @@ namespace ConsoleApp2
             #region Day7
             //day7.Day7Example1_AbstractClass();
             //day7.Day7Example2_MethodOverloading();
-            day7.Day7Example2_OperatorOverloading();
+            //day7.Day7Example2_OperatorOverloading();
             #endregion
 
             #region Day8
@@ -72,8 +73,12 @@ namespace ConsoleApp2
             #endregion
 
             #region Day10
-            day10.Day10Example3_FileHandling1();
+            //day10.Day10Example3_FileHandling1();
 
+            #endregion
+
+            #region Day11
+            day11.Day11Example1_RegEx();
             #endregion
 
         }
