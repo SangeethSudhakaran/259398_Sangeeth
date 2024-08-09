@@ -18,6 +18,7 @@ namespace ConsoleApp2
             Day9 day9 = new Day9();
             Day10 day10 = new Day10(); 
             Day11 day11 = new Day11();
+            Day12 day12 = new Day12();
             //Day3Question1_Swap();
             //prg.Day3Question1_Swap();
             //prg.ElectricityCalc();
@@ -79,7 +80,12 @@ namespace ConsoleApp2
 
             #region Day11
             //day11.Day11Example1_RegEx();
-            day11.Day11Example1_RegEx1();
+            //day11.Day11Example1_RegEx1();
+            //day11.Day11Example3_Linq();
+            #endregion
+
+            #region Day12
+            day12.Day12Example1_Linq();
             #endregion
 
         }
