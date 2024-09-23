@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Training\\ConsoleApp2\\ConsoleApp2.csproj": {}
+    "C:\\Sangeeth\\Traning\\Repo\\ConsoleApp2\\ConsoleApp2.csproj": {}
   },
   "projects": {
-    "C:\\Training\\Calculator\\Calculator.csproj": {
+    "C:\\Sangeeth\\Traning\\Repo\\Calculator\\Calculator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Training\\Calculator\\Calculator.csproj",
+        "projectUniqueName": "C:\\Sangeeth\\Traning\\Repo\\Calculator\\Calculator.csproj",
         "projectName": "Calculator",
-        "projectPath": "C:\\Training\\Calculator\\Calculator.csproj",
+        "projectPath": "C:\\Sangeeth\\Traning\\Repo\\Calculator\\Calculator.csproj",
         "packagesPath": "C:\\Users\\SudhakaranSa\\.nuget\\packages\\",
-        "outputPath": "C:\\Training\\Calculator\\obj\\",
+        "outputPath": "C:\\Sangeeth\\Traning\\Repo\\Calculator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SudhakaranSa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -60,14 +60,14 @@
         }
       }
     },
-    "C:\\Training\\ConsoleApp2\\ConsoleApp2.csproj": {
+    "C:\\Sangeeth\\Traning\\Repo\\ConsoleApp2\\ConsoleApp2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Training\\ConsoleApp2\\ConsoleApp2.csproj",
+        "projectUniqueName": "C:\\Sangeeth\\Traning\\Repo\\ConsoleApp2\\ConsoleApp2.csproj",
         "projectName": "ConsoleApp2",
-        "projectPath": "C:\\Training\\ConsoleApp2\\ConsoleApp2.csproj",
+        "projectPath": "C:\\Sangeeth\\Traning\\Repo\\ConsoleApp2\\ConsoleApp2.csproj",
         "packagesPath": "C:\\Users\\SudhakaranSa\\.nuget\\packages\\",
-        "outputPath": "C:\\Training\\ConsoleApp2\\obj\\",
+        "outputPath": "C:\\Sangeeth\\Traning\\Repo\\ConsoleApp2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SudhakaranSa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -85,8 +85,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Training\\Calculator\\Calculator.csproj": {
-                "projectPath": "C:\\Training\\Calculator\\Calculator.csproj"
+              "C:\\Sangeeth\\Traning\\Repo\\Calculator\\Calculator.csproj": {
+                "projectPath": "C:\\Sangeeth\\Traning\\Repo\\Calculator\\Calculator.csproj"
               }
             }
           }
