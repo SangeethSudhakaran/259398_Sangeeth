@@ -1,0 +1,14 @@
+﻿        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, World!");
+            IWebDriver driver = new ChromeDriver();
+
+            driver.Navigate().GoToUrl("https://practicetestautomation.com/practice-test-login/");
+            IWebElement UsernameField = driver.FindElement(By.Id("user-name"));
+            IWebElement PasswordField = driver.FindElement(By.Id("password"));
+            IWebElement LoginButton = driver.FindElement(By.Id("login-button"));
+            UsernameField.SendKeys("student");
+            PasswordField.SendKeys("Password123");
+            LoginButton.Click();
+
+        }
