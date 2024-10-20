@@ -1,14 +1,20 @@
-﻿        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-            IWebDriver driver = new ChromeDriver();
+﻿//Define the numbers to sum
+int num1 = 5;
+int num2 = 10;
 
-            driver.Navigate().GoToUrl("https://practicetestautomation.com/practice-test-login/");
-            IWebElement UsernameField = driver.FindElement(By.Id("user-name"));
-            IWebElement PasswordField = driver.FindElement(By.Id("password"));
-            IWebElement LoginButton = driver.FindElement(By.Id("login-button"));
-            UsernameField.SendKeys("student");
-            PasswordField.SendKeys("Password123");
-            LoginButton.Click();
+//Create a new process
+ProcessStartInfo start = new ProcessStartInfo();
+start.FileName = "python"; //Specify python executable
+start.Arguments = $"sum_script.py {num1} {num2}"; //Pass arguments
+start.RedirectStandardOutput = true; //Redirect output
+start.UseShellExecute = false; //Don't use shell
+start.CreateNoWindow = true; //No window
 
-        }
+using (Process process = Process.Start(start))
+{
+    using (StreamReader reader = process.StandardOutput)
+    {
+        string result = reader.ReadLine(); //Read the output
+        Console.WriteLine($"The sum is: {result}"); //Print the result
+    }
+}
