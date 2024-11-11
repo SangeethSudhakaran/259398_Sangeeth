@@ -1,86 +1,67 @@
-﻿using System;
-using System.Runtime.InteropServices; 
-using Microsoft.Office.Interop.Outlook;
-namespace Part3_OutlookCalendarEvents
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Application outlookApp = null;
-            NameSpace outlookNamespace = null;
-            MAPIFolder calendarFolder = null;
+import pandas as pd
+import re
+from collections import Counter
 
-            try
-            {
-                // Initialize Outlook application
-                outlookApp = new Application();
-                outlookNamespace = outlookApp.GetNamespace("MAPI");
+# Function to read CSV, process all data and count word frequencies
+def word_frequencies_from_csv(file_path):
+    # Step 1: Load the CSV file
+    df = pd.read_csv(file_path)
+    
+    # Step 2: Combine all data from the CSV file into one large string
+    # Convert everything in the dataframe to a single string and join with spaces
+    full_text = ' '.join(df.astype(str).values.flatten())
+    
+    # Step 3: Clean and tokenize the text
+    # Convert to lowercase, remove non-alphabetic characters (you can modify this for better handling of punctuation, etc.)
+    words = re.findall(r'\b\w+\b', full_text.lower())
+    
+    # Step 4: Count word frequencies using Counter
+    word_counts = Counter(words)
+    
+    # Step 5: Create a DataFrame from the word counts
+    word_freq_df = pd.DataFrame(word_counts.items(), columns=['Word', 'Frequency'])
+    
+    # Sort by frequency in descending order
+    word_freq_df = word_freq_df.sort_values(by='Frequency', ascending=False).reset_index(drop=True)
+    
+    return word_freq_df
 
-                // Get the default calendar folder
-                calendarFolder = outlookNamespace.GetDefaultFolder(OlDefaultFolders.olFolderCalendar);
-                Items calendarItems = calendarFolder.Items;
+# Example usage
+file_path = 'TheGiftOfMagi.csv'  # Path to your CSV file
+word_freq_df = word_frequencies_from_csv(file_path)
 
-                // Define the time frame for upcoming events
-                DateTime startTime = DateTime.Now;
-                DateTime endTime = startTime.AddDays(30); // Get events for the next 30 days
+# Display the word frequencies
+print(word_freq_df)
 
-                // Filter items based on the start and end time
-                calendarItems.IncludeRecurrences = true;
-                calendarItems.Sort("[Start]");
 
-                // Create a filter for upcoming events
-                string filter = $"[Start] >= '{startTime.ToString("g")}' AND [Start] <= '{endTime.ToString("g")}'";
-                Items filteredItems = calendarItems.Restrict(filter);
 
-                // Display the events
-                Console.WriteLine("Upcoming Events:");
 
-                if (filteredItems.Count > 0)
-                {
-                    foreach (AppointmentItem item in filteredItems)
-                    {
-                        if (item is AppointmentItem)
-                        {
-                            Console.WriteLine($"- {item.Subject}: {item.Start.ToString("yyyy-MM-dd hh:mm tt")}");
-                        }
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("No upcoming events found.");
-                }
-            }
-            catch (COMException comEx)
-            {
-                Console.WriteLine($"COM Exception: {comEx.Message}");
-            }
-            catch (UnauthorizedAccessException)
-            {
-                Console.WriteLine("Permission denied. Please ensure you have access to ");
-            }
-            catch (System.Exception ex)
-            {
-                Console.WriteLine($"An unexpected error occurred: {ex.Message}");
-            }
-            finally
-            {
-                // Cleanup: Release COM objects
-                if (calendarFolder != null)
-                {
-                    Marshal.ReleaseComObject(calendarFolder);
-                }
-                if (outlookNamespace != null)
-                {
-                    Marshal.ReleaseComObject(outlookNamespace);
-                }
-                if (outlookApp != null)
-                {
-                    Marshal.ReleaseComObject(outlookApp);
-                }
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-            }
-        }
-    }
-}
+
+
+
+
+import pandas as pd        #importing pandas
+file_path='TheGiftOfMagi.csv'     #defining filepath
+
+#creating function to get word count
+def  fn_Counter(filepath):
+    file =open(filepath,'r',encoding='UTF-8')           #read the specified csv file
+    dict_Uniquewords={}                                 #inililizing dictionay to store unique words and counts
+    for line in file:                                   #looping through each files
+        if line.strip()!="":                            #Checking for not empty lines                 
+            line=line.strip()                           #removing spaces 
+            list_Lines=line.split()                     #spliting sentences to words based on space character
+            for item in list_Lines:                     #looping through each items/words in line
+                if(item not in dict_Uniquewords):
+                    dict_Uniquewords[item]=1            #if new word then adding to dictionary
+                else:
+                    dict_Uniquewords[item]+=1           #if already existing word incrementing count
+    file.close()
+    return dict_Uniquewords
+
+#function call
+dictUniqueWordCount =fn_Counter(file_path)
+
+#creation of dataframe and defining columns
+df=pd.DataFrame(list(dictUniqueWordCount.items()),columns=['Words', 'Count'])
+print(df)   
