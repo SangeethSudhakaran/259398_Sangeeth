@@ -72,32 +72,18 @@ print(df)
 https://ctxt.io/2/AAB4_AbNFQ
 
 
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 
-## Lets connect to mongo db !1
-DA
-DAOI
-2 3
-DA
-from Pymongo .monBo client import Hongoc11ent
-D
-D
-4 from pymongo.server_api import serverApi
-S
-DAVCe
-uri a r"mongodbtsrv://rohithrajreganti:rohithrajreganti@cluster0. .rd7dn. mongodb net/i ?retrywrites-true&w=majority&appName-Clusterg"
-DaVIC
-6 7
-Viongacb.
-mongo.carmd.dunao
->
-8 # Create a new client and connect to the server
-client= Mongoclient(uri, server_api-serverApi('1'), tlsAllowInvalidCertificates=True,
-10
-11 # send a ping to confirm the successful connection
-12 cry:
-13 client,admin.command(ping')
-print('ping youed deployment, you are successfully connected')
-14
-15 except Exception as e:
-16 print(e)
+uri=r"mongodb+srv://rohithrajreganti:rohithrajreganti@cluster0.rd7dn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
+#create a new client and connect to the server
+client=MongoClient(uri,server_api=ServerApi('1'),tlsAllowInvalidCertificates=True)
+
+#send a ping to confirm the successful connection
+
+try:
+    client.admin.command('ping')
+    print('pinged ur deployment, u r successfully connected')
+except Exception as e:
+    print(e)
