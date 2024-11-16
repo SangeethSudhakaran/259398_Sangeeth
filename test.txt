@@ -91,3 +91,34 @@ except Exception as e:
 
 
 python -m pip install "pymongo[srv]"
+
+
+
+from pymongo import Mongoclient
+import pandas as pd
+connection_string = "mongodb+srv://rohithrajreganti: rohithrajreganti@clustere.rd7dn.mongodb.net/?retrywrites=true&w=majority&appName=Clustero"
+try:
+client = MongoClient (connection_string, tlsAllowInvalidCertificates=True)
+print("connected to mongo atlas success")
+# connect tow mongo cluster
+db = client['sample_mflix']
+# access a collection
+collection = db['movies']
+#Query the collection
+results collection.find().limit(5)
+# for doc in results:
+# print(doc)
+#
+break
+except Exception as e:
+print(e)
+finally:
+client.close()
+#print(type (results))
+result_list = list(results) # print(type (result_list)) # print(result_list[:4])
+df =
+pd.DataFrame(result_list)
+print(df.head()) print(df.columns)
+1
+You have Windows Subsystem
+your system. Do you want to i entanciano festivate W
