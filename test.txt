@@ -258,3 +258,92 @@ print(df.head(20))
 client.close()
 
 
+--------------------------------------------------------------
+
+import pymongo
+import sqlite3
+
+def transfer_movies_data(mongo_uri, database_name, collection_name, sqlite_db_path):
+    try:
+        # Connect to MongoDB
+        mongo_client = pymongo.MongoClient(mongo_uri)
+        mongo_db = mongo_client[database_name]
+        mongo_collection = mongo_db[collection_name]
+
+        print("Connected to MongoDB successfully.")
+    except Exception as e:
+        print(f"Error connecting to MongoDB: {e}")
+        return
+
+    try:
+        # Connect to SQLite
+        sqlite_conn = sqlite3.connect(sqlite_db_path)
+        sqlite_cursor = sqlite_conn.cursor()
+
+        # Create a table in SQLite if it doesn't exist
+        create_table_query = """
+        CREATE TABLE IF NOT EXISTS movies (
+            id TEXT PRIMARY KEY,
+            title TEXT,
+            director TEXT,
+            release_year INTEGER,
+            genre TEXT
+        );
+        """
+        sqlite_cursor.execute(create_table_query)
+        sqlite_conn.commit()
+
+        print("Connected to SQLite and ensured table exists.")
+    except sqlite3.Error as e:
+        print(f"Error connecting to SQLite: {e}")
+        mongo_client.close()
+        return
+
+    try:
+        # Fetch data from MongoDB
+        movies_data = mongo_collection.find()
+
+        # Insert data into SQLite
+        for movie in movies_data:
+            # Extract data from MongoDB document
+            movie_id = str(movie.get("_id", ""))
+            title = movie.get("title", "Unknown")
+            director = movie.get("director", "Unknown")
+            release_year = movie.get("release_year", 0)
+            genre = movie.get("genre", "Unknown")
+
+            # Insert into SQLite
+            insert_query = """
+            INSERT OR REPLACE INTO movies (id, title, director, release_year, genre)
+            VALUES (?, ?, ?, ?, ?);
+            """
+            sqlite_cursor.execute(insert_query, (movie_id, title, director, release_year, genre))
+        
+        sqlite_conn.commit()
+        print("Data transfer completed successfully!")
+    except Exception as e:
+        print(f"Error during data transfer: {e}")
+    finally:
+        # Close connections
+        try:
+            sqlite_conn.close()
+            print("SQLite connection closed.")
+        except Exception as e:
+            print(f"Error closing SQLite connection: {e}")
+
+        try:
+            mongo_client.close()
+            print("MongoDB connection closed.")
+        except Exception as e:
+            print(f"Error closing MongoDB connection: {e}")
+
+# Configuration
+MONGO_URI = "your_mongodb_connection_string"  # Replace with your MongoDB URI
+DATABASE_NAME = "movie_library"               # Replace with your database name
+COLLECTION_NAME = "movies"                    # Replace with your collection name
+SQLITE_DB_PATH = "movies.db"                  # Path for the SQLite database file
+
+# Run the transfer
+transfer_movies_data(MONGO_URI, DATABASE_NAME, COLLECTION_NAME, SQLITE_DB_PATH)
+
+
